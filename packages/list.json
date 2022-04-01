@@ -1,0 +1,8 @@
+[
+  {
+    "compName": "Table",
+    "compZhName": "表格",
+    "compDesc": "基于element-plus 二次封装的表格组件",
+    "compClassName": "table"
+  }
+]
