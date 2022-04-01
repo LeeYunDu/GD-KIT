@@ -1,19 +1,13 @@
 <template>
   <div class="echart-map-container">
     <div class="echart-map-header-box">
-      <DateScope
-        v-if="dateScope"
-        v-bind="$attrs"
-      />
       <Breadcrumb
         v-if="breadcrumb"
         v-model:data="that.breadcrumb"
         :on-click="handleBreadcrumbClick"
       />
-      <TimeQuery v-if="timeQuery" />
       <slot name="prefix"></slot>
     </div>
-
     <div id="map-container"></div>
     <slot></slot>
   </div>
@@ -21,21 +15,11 @@
 
 <script lang="ts" setup>
 import Breadcrumb from './components/breadcrumb.vue'
-import TimeQuery from './components/timeQuery.vue'
-import DateScope from './components/dateScope.vue'
 import { useCMap } from './CMap'
 import { onMounted, reactive,watchEffect, onUnmounted } from 'vue'
 const props = defineProps({
   breadcrumb:{
     type:Boolean, //面包屑
-    default:true
-  },
-  dateScope:{
-    type:Boolean, //时间范围
-    default:false
-  },
-  timeQuery:{
-    type:Boolean, // 年份时间选择器
     default:true
   },
   onMouseover:{ // 地图鼠标经过事件
@@ -128,6 +112,7 @@ defineExpose({
   height: 500px;
   width: 100%;
   position: relative;
+  background: #010d38;
   #map-container{
     height: 100%;
     width: 100%;
