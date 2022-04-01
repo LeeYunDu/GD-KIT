@@ -8,6 +8,7 @@
     "gen": "node ./script/genNewComp/index.js"
   },
   "dependencies": {
+    "echarts": "^5.3.2",
     "element-plus": "^2.1.7",
     "prismjs": "^1.25.0",
     "vue": "^3.2.23"

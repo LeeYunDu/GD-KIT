@@ -1,0 +1,200 @@
+[
+  {
+    "featureType": "water",
+    "elementType": "all",
+    "stylers": {
+      "color": "#020f3c"
+    }
+  },
+  {
+    "featureType": "land",
+    "elementType": "all",
+    "stylers": {
+      "color": "#111e4c"
+    }
+  },
+  {
+    "featureType": "railway",
+    "elementType": "all",
+    "stylers": {
+      "visibility": "on"
+    }
+  },
+  {
+    "featureType": "highway",
+    "elementType": "all",
+    "stylers": {
+      "color": "#414c74"
+    }
+  },
+  {
+    "featureType": "highway",
+    "elementType": "labels",
+    "stylers": {
+      "visibility": "on"
+    }
+  },
+  {
+    "featureType": "arterial",
+    "elementType": "geometry",
+    "stylers": {
+      "color": "#36416aff"
+    }
+  },
+  {
+    "featureType": "arterial",
+    "elementType": "geometry.fill",
+    "stylers": {
+      "color": "#36416aff"
+    }
+  },
+  {
+    "featureType": "poi",
+    "elementType": "all",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "green",
+    "elementType": "all",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "subway",
+    "elementType": "all",
+    "stylers": {
+      "visibility": "on"
+    }
+  },
+  {
+    "featureType": "manmade",
+    "elementType": "all",
+    "stylers": {
+      "color": "#0b316b"
+    }
+  },
+  {
+    "featureType": "local",
+    "elementType": "all",
+    "stylers": {
+      "visibility": "off",
+      "color": "#5470c6"
+    }
+  },
+  {
+    "featureType": "arterial",
+    "elementType": "labels",
+    "stylers": {
+      "visibility": "on"
+    }
+  },
+  {
+    "featureType": "boundary",
+    "elementType": "all",
+    "stylers": {
+      "color": "#fefefe"
+    }
+  },
+  {
+    "featureType": "building",
+    "elementType": "all",
+    "stylers": {
+      "color": "#0b316b"
+    }
+  },
+  {
+    "featureType": "label",
+    "elementType": "labels.text.fill",
+    "stylers": {
+      "visibility": "on",
+      "color": "#5470c6"
+    }
+  },
+  {
+    "featureType": "district",
+    "elementType": "labels",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "province",
+    "elementType": "labels",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "city",
+    "elementType": "labels",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "subwaylabel",
+    "elementType": "labels",
+    "stylers": {
+      "visibility": "on"
+    }
+  },
+  {
+    "featureType": "town",
+    "elementType": "labels",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "nationalwaysign",
+    "elementType": "labels",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "nationalwaysign",
+    "elementType": "labels.icon",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "provincialwaysign",
+    "elementType": "labels",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "provincialwaysign",
+    "elementType": "labels.icon",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "highwaysign",
+    "elementType": "labels",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "highwaysign",
+    "elementType": "labels.icon",
+    "stylers": {
+      "visibility": "off"
+    }
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": {
+      "visibility": "off"
+    }
+  }
+]
