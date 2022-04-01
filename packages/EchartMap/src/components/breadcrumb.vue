@@ -1,7 +1,7 @@
 <template>
   <div class="breadcrumb-view">
     <span>
-      <img style="margin-right: 10px" src="/static/images/icon-position.png">
+      <!-- <img style="margin-right: 10px" src="/static/images/icon-position.png"> -->
     </span>
     <el-breadcrumb :separator-icon="ArrowRight">
       <el-breadcrumb-item
@@ -33,8 +33,6 @@ const props = defineProps({
 
 const emit = defineEmits(['handleJump'])
 const handleClick = (name: string, index: number) => {
-  console.log(333)
-
   props.onClick({ name, index })
 }
 </script>

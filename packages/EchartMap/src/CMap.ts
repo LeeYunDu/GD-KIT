@@ -4,7 +4,8 @@
 
 import { ref, Ref, computed  } from 'vue'
 import * as echarts from 'echarts'
-// import { getGeoJSON } from '@/api'
+import { getGeoJSON } from './units/index'
+
 const allMap: any = {
 
 }
@@ -12,6 +13,7 @@ const allMap: any = {
 async function getArea (area: string) {
   // 地图注册
   if (!allMap[area]) {
+    // const res: any = await getGeoJSON('浙江省')
     const res: any = await getGeoJSON(area)
     // 存储地区编码
     try {
@@ -123,14 +125,8 @@ export function useCMap (id: string, options: CMapOption) {
       replaceMerge: ['series']
     })
   }
-  function clearFly () {
-    chart.value.setOption({
-      series: []
-    }, {
-      replaceMerge: ['visualMap', 'series']
-    })
 
-  }
+
   async function addAreaChart (area: string) {
     // 地区来回切换内存溢出 需要清除事件绑定
     try {
@@ -178,9 +174,11 @@ export function useCMap (id: string, options: CMapOption) {
     chart.value.setOption(options, {
       replaceMerge: ['visualMap', 'series']
     })
-    // addHeatChart(pointsData)
+
     // 点击事件
     chart.value.on('click', async (params: any) => {
+      console.log(params,'params')
+
       if(params.componentType==='geo'){
         const { name } = params
         area = name
@@ -209,7 +207,6 @@ export function useCMap (id: string, options: CMapOption) {
       chart,
       properties,
       addHeatChart,
-      clearFly,
       breadcrumb,
       deepRouterMap,
       addMarker

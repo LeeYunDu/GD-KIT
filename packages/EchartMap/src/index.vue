@@ -119,10 +119,13 @@ defineExpose({
   $CMAP:that
 })
 </script>
+<style>
+
+</style>
 <style lang="scss" scoped>
 
 .echart-map-container{
-  height: 100%;
+  height: 500px;
   width: 100%;
   position: relative;
   #map-container{
