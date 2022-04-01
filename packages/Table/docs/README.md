@@ -34,6 +34,8 @@ import demo from './demo.vue'
 
 
 ## tabelColumn属性
+#### tabelColumn字段包含了element-plus官网所有字段,以下为拓展字段
+
 参数 | 说明 | 类型 | 可选值 | 默认值 | 是否必填
 :-: | :-: | :-: | :-: | :-: | :-:
 `slot` | 插槽的形式显示 | Boolean | - | - | 否 

@@ -61,7 +61,8 @@ export default defineComponent({
     // 表格列
     tabelColumn: {
       type: Array as PropType<Array<any>>,
-      default: () => []
+      default: () => [],
+      required:true
     },
     // 获取列表接口
     tableDataApi: {
@@ -174,11 +175,6 @@ export default defineComponent({
     }
 
     flex: 1;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
     .el-table__row {
       td {
         padding:6px  0 !important;
