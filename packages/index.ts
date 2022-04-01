@@ -8,13 +8,16 @@
 import { App, Plugin } from 'vue';
 
 import { TablePlugin } from './Table';
+import { EchartMapPlugin } from './EchartMap';
 
-const MYKitPlugin: Plugin = {
+const GDKitPlugin: Plugin = {
   install(app: App) {
     TablePlugin.install?.(app);
+    EchartMapPlugin.install?.(app);
   },
 };
 
-export default MYKitPlugin;
+export default GDKitPlugin;
 
 export * from './Table'
+export * from './EchartMap'

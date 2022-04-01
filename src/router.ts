@@ -13,6 +13,11 @@
     name: 'Table',
     path: '/components/Table',
     component: () => import('packages/Table/docs/README.md'),
+  },{
+    title: 'Echart地图',
+    name: 'EchartMap',
+    path: '/components/EchartMap',
+    component: () => import('packages/EchartMap/docs/README.md'),
   }];
  
  const routerConfig = {
