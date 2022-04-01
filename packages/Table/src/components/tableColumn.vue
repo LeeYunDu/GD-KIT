@@ -4,7 +4,7 @@
     v-if="column.columns"
     v-bind="column"
   >
-    <tableColumn v-for="(item,index) in column.columns" :column='item' :key="setKey(item,index)"></tableColumn>
+    <tableColumn v-for="(item,index) in column.columns" :key="setKey(item,index)" :column="item" />
   </el-table-column>
   <!-- render单元格 -->
   <el-table-column
@@ -31,7 +31,7 @@ import { defineComponent } from 'vue'
 import cell from './cell.vue'
 
 export default defineComponent({
-  name:'tableColumn',
+  name:'TableColumn',
   components: {
     cell
   },
@@ -45,7 +45,7 @@ export default defineComponent({
       type:Number
     }
   },
-  setup(props:any){
+  setup (props:any){
     const setKey = (item:any, index:number) => {
       if ((props).loopKey in item) {
         return item[(props).loopKey]

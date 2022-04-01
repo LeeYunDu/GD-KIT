@@ -175,7 +175,7 @@ export default defineComponent({
 
     flex: 1;
     overflow-y: scroll;
-    
+
     &::-webkit-scrollbar {
       display: none;
     }
