@@ -3,28 +3,13 @@
     <el-table
       v-bind="$attrs"
       :data="tableDataApi?tableData:defaultData"
-      border
-      class="custom-table"
       :cell-style="{'text-align':'center'}"
       :header-cell-style="{'text-align':'center'}"
-      header-cell-class-name="custom-table-header"
     >
       <template v-for="(item,index) in tabelColumn" :key="setKey(item,index)">
-        <template v-if="item.columns">
-          <el-table-column :label="item.label">
-            <tableColumn
-              v-for="(columnItem,columnIndex) in item.columns"
-              :key="setKey(columnItem,columnIndex)"
-              :column="columnItem"
-            />
-          </el-table-column>
-        </template>
-        <template v-else-if="item.slot">
+        <template v-if="item.slot">
           <el-table-column
-            :label="item.label"
-            :width="item.width"
-            :min-width="item.minWidth"
-            :prop="item.prop"
+            v-bind="item"
           >
             <template #default="scope">
               <slot :name="item.prop" :data="scope">
@@ -46,7 +31,7 @@
       :current-page="pageConfig.current"
       :page-size="pageConfig.size"
       :total="total"
-      :page-sizes="pageSizes"
+      :page-sizes="pageSize"
       @current-change="changePage"
       @size-change="changePageSize"
     />
@@ -59,16 +44,14 @@ import { ItableQuery } from './types/index'
 import tableColumn from './components/tableColumn.vue'
 import pagination from './components/pagination.vue'
 export default defineComponent({
-  name: 'CustomTable',
+  name: 'GDTable',
   components: {
     tableColumn, pagination
   },
   props: {
-    pageSizes: {
-      type: Array as any,
-      default () {
-        return []
-      }
+    pageSize: {
+      type: Number,
+      default:10
     },
     // 直接传入数据
     defaultData: {
@@ -156,12 +139,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      /**
-       * 计算表格高度
-       */
-
       if(props.defaultData.length===0)handlerApiData()
-
     })
 
     // 在 v-for 循环渲染数据中不使用index作为key值,默认采用数据中的id字段作为唯一值,避免数据错位和性能消耗
@@ -194,6 +172,23 @@ export default defineComponent({
     &::before {
       display: none;
     }
+
+    flex: 1;
+    overflow-y: scroll;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .el-table__row {
+      td {
+        padding:6px  0 !important;
+      }
+    }
+
+    .el-table__header,.el-table__body{
+      margin: 0;
+    }
+
     .el-table__header-wrapper {
       background: #f7f8fa;
     }
@@ -205,32 +200,6 @@ export default defineComponent({
   display: flex;
   justify-content: flex-end;
 }
-.custom-table {
-  flex: 1;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
 
 </style>
-<style lang='scss'>
-.column_sky {
-  color: #00eaff;
-}
-.custom-table {
-  .custom-table-header {
-    background-color: #f7f8fa;
-    font-size: 12px;
-    color: #666666;
-    padding: 6px 0;
-    // padding: 0;
-  }
-  .el-table__row {
-    td {
-      padding: 6px 0 !important;
-    }
-  }
-}
 
-</style>
