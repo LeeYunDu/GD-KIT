@@ -9,7 +9,7 @@
 </script>
 
 <style scoped>
-.my-{{ compClassName }} {
+.gd-{{ compClassName }} {
   
 }
 </style>
