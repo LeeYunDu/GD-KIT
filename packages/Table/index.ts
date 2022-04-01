@@ -1,12 +1,12 @@
-import { App, Plugin } from 'vue';
-import Table from './src/index.vue';
+import { App, Plugin } from 'vue'
+import Table from './src/index.vue'
 
 export const TablePlugin: Plugin = {
-  install(app: App) {
-    app.component('gd-table', Table);
+  install (app: App) {
+    app.component('GdTable', Table)
   },
-};
+}
 
 export {
   Table,
-};
+}
