@@ -1,6 +1,5 @@
 <template>
   <div>
-    demo1
-    <gd-three />
+    2222
   </div>
 </template>
