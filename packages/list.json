@@ -10,5 +10,11 @@
     "compZhName": "Echart地图",
     "compDesc": "基于echarts的地图组件",
     "compClassName": "echart-map"
+  },
+  {
+    "compName": "Three",
+    "compZhName": "Three.js",
+    "compDesc": "Three 案例编写",
+    "compClassName": "three"
   }
 ]

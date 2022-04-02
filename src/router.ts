@@ -18,6 +18,11 @@
     name: 'EchartMap',
     path: '/components/EchartMap',
     component: () => import('packages/EchartMap/docs/README.md'),
+  },{
+    title: 'Three.js',
+    name: 'Three',
+    path: '/components/Three',
+    component: () => import('packages/Three/docs/README.md'),
   }];
  
  const routerConfig = {
