@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import Breadcrumb from './components/breadcrumb.vue'
 import { useCMap } from './CMap'
-import { onMounted, reactive,watchEffect, onUnmounted } from 'vue'
+import { onMounted, reactive,watchEffect, onUnmounted, watch } from 'vue'
 const props = defineProps({
   breadcrumb:{
     type:Boolean, //面包屑
@@ -91,13 +91,18 @@ const handleBreadcrumbClick = (item: any) => {
   emit('breadcrumbClicked')
 }
 // 当前所在区域
-watchEffect(() => {
+watch(()=>that.breadcrumb,val=>{
   let area = that.breadcrumb[
     that.breadcrumb.length - 1
   ]
   that.currentArea = area
-  emit('changeArea', area)
-})
+  if(that.load){
+    setTimeout(()=>{
+      emit('changeArea', area)
+    },0)
+  }
+},{ deep:true })
+
 const emit = defineEmits(['changeArea','breadcrumbClicked','load'])
 defineExpose({
   $CMAP:that

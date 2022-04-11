@@ -183,13 +183,14 @@ export function useCMap (id: string, options: CMapOption) {
         const { name } = params
         area = name
         deepRouterMap(name)
-        // 面包屑添加一级，无重复添加
-        if (!breadcrumb.value.includes(params.name)) { breadcrumb.value.push(params.name) }
+
       }
       // 外部组件额外调用的click事件
       onMouseClick&&onMouseClick(params)
     })
     chart.value.resize()
+    // 面包屑添加一级，无重复添加
+    if (!breadcrumb.value.includes(area)) { breadcrumb.value.push(area) }
 
   }
   //地图下钻
