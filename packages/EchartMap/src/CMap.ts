@@ -171,9 +171,10 @@ export function useCMap (id: string, options: CMapOption) {
       }
 
     }
-    chart.value.setOption(options, {
+    chart.value.setOption(options,true, {
       replaceMerge: ['visualMap', 'series']
     })
+
 
     // 点击事件
     chart.value.on('click', async (params: any) => {
