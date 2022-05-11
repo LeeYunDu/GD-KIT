@@ -10,12 +10,14 @@ import { App, Plugin } from 'vue';
 import { TablePlugin } from './Table';
 import { EchartMapPlugin } from './EchartMap';
 import { ThreePlugin } from './Three';
+import { FormPlugin } from './Form';
 
 const GDKitPlugin: Plugin = {
   install(app: App) {
     TablePlugin.install?.(app);
     EchartMapPlugin.install?.(app);
     ThreePlugin.install?.(app);
+    FormPlugin.install?.(app);
   },
 };
 
@@ -24,3 +26,4 @@ export default GDKitPlugin;
 export * from './Table'
 export * from './EchartMap'
 export * from './Three'
+export * from './Form'

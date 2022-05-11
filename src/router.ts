@@ -23,6 +23,11 @@
     name: 'Three',
     path: '/components/Three',
     component: () => import('packages/Three/docs/README.md'),
+  },{
+    title: '表单',
+    name: 'Form',
+    path: '/components/Form',
+    component: () => import('packages/Form/docs/README.md'),
   }];
  
  const routerConfig = {

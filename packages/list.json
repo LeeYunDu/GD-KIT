@@ -16,5 +16,11 @@
     "compZhName": "Three.js",
     "compDesc": "Three 案例编写",
     "compClassName": "three"
+  },
+  {
+    "compName": "Form",
+    "compZhName": "表单",
+    "compDesc": "表单工厂模式",
+    "compClassName": "form"
   }
 ]
