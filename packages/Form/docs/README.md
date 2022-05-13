@@ -18,11 +18,22 @@ import demo from './demo.vue'
 ## 属性
 参数 | 说明 | 类型 | 可选值 | 默认值 | 是否必填
 :-: | :-: | :-: | :-: | :-: | :-:
-`arg1` | 第一个参数 | string | - | `default` | 否 
-`arg2` | 第二个参数 | string | - | `default` | 否
+`model` | 字段集合 | object | - | `-` | 否 
+`labels` | 字段配置 | Array<'fieldItem'> | - | `-` | 否 
+`formProps` | el-form配置 | object | - | `-` | 否 
+`gridProps` | el-row配置 | object | - | `-` | 否 
+
+## fieldItem 
+参数 | 说明 | 类型 | 可选值 | 默认值 | 是否必填
+:-: | :-: | :-: | :-: | :-: | :-:
+`label` | 字段名称 | string | - | `-` | 否 
+`prop` | 字段key | string | - | `-` | 否 
+`gridProps` | el-col配置 | object | - | `-` | 否 
+`formItemProps` | el-form-item配置 | object | - | `-` | 否 
+`inputProps` | 表单组件配置 | object | - | `-` | 否 
 
 ## 事件
 事件名 | 说明 | 参数列表 | 参数说明
 :-: | :-: | :-: | :-:
-`click` | 点击事件 | $event | 原生的 dom event
-`customEvent` | 自定义事件 | [a, b, c] | a：参数一；b：参数二；c：参数三
+`validate` | 表单验证 | - | -
+`resetFields` | 表单重置 | - | -
