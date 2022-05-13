@@ -27,6 +27,7 @@ import demo from './demo.vue'
 参数 | 说明 | 类型 | 可选值 | 默认值 | 是否必填
 :-: | :-: | :-: | :-: | :-: | :-:
 `label` | 字段名称 | string | - | `-` | 否 
+`type` | 组件类型 | string | el-[type]或slot | `input` | 否 
 `prop` | 字段key | string | - | `-` | 否 
 `gridProps` | el-col配置 | object | - | `-` | 否 
 `formItemProps` | el-form-item配置 | object | - | `-` | 否 
