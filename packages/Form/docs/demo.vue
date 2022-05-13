@@ -1,10 +1,10 @@
 <template>
   <div>
-    {{ params }}
     <gd-form
       v-bind="formViewProps"
       ref="formRef"
       :model="params"
+      @change-bus="handleChange"
     >
       <template #slot>
         这是表单插槽
@@ -36,6 +36,7 @@ let params = ref({
   slot:'',
   checkbox:[]
 })
+
 let formViewProps = ref({
   // 表单字段
   labels:[
@@ -86,7 +87,8 @@ let formViewProps = ref({
     gutter:'20',
     justify:'start'
   }
-
-
 })
+function handleChange (item:any){
+  console.log('change事件:',item.type,item.value)
+}
 </script>

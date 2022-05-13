@@ -85,6 +85,8 @@ const rules = ()=>{
     return []
   }
 }
+
+
 </script>
 <style lang="scss" scoped>
 .form-item-view{

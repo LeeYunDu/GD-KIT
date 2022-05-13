@@ -17,7 +17,7 @@ import { ElButton,ElMessage } from 'element-plus'
 let tableViewProps = ref({
   height:'300px',
   columns:[
-    { label: '插槽列', width: 'auto', prop: 'slotColumn',type:'slot',slot:true },
+    { label: '插槽列', width: 'auto', prop: 'slotColumn',type:'slot' },
     { label: '多级表头', width: 'auto', columns:[
       { label: '数据项1', width: 'auto', prop: 'name' },
       { label: '数据项2', width: 'auto', prop: 'name',columns:[

@@ -36,5 +36,9 @@ import demo from './demo.vue'
 ## 事件
 事件名 | 说明 | 参数列表 | 参数说明
 :-: | :-: | :-: | :-:
+`changeBus` | 表单组件的change事件 | {type,value} | type:表单的prop值,value:数值
+## 方法
+事件名 | 说明 | 参数列表 | 参数说明
+:-: | :-: | :-: | :-:
 `validate` | 表单验证 | - | -
 `resetFields` | 表单重置 | - | -
