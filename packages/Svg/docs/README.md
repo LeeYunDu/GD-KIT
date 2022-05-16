@@ -8,21 +8,37 @@ import demo from './demo.vue'
 
 # Svg
 
-Svg 应用
+Web动画三大类
+- CSS3 动画
+- javascript 动画(canvas)
+- html 动画(SVG)
+
+下面学习一下SVG在项目中的应用
+
+SVG是可缩放矢量图形,是W3C XML的分支语言。
+
+### 关于SVG的标签介绍
+
+- version: 表示 svg 的版本,可选值(1.0/1.1)
+- xmlns:http://www.w3.org/2000/svg (固定值)
+- xmlns:xlink http://www.w3.org/1999/xlink (固定值)
+- xml:space preserve (固定值)
+- calss 
+- width
+- height
+- viewbox  定义了画布上可以显示的区域，当 viewBox 的大小和 svg 不同时，viewBox 在屏幕上的显示会缩放至 svg 同等大小（暂时可以不用理解）
+
+以上创建了 svg标签后,可以在内部添加svg 图形
+
+
+
+
 
 ## 基础用法
 <Preview comp-name="Svg" demo-name="demo">
   <demo />
 </Preview>
 
-## 属性
-参数 | 说明 | 类型 | 可选值 | 默认值 | 是否必填
-:-: | :-: | :-: | :-: | :-: | :-:
-`arg1` | 第一个参数 | string | - | `default` | 否 
-`arg2` | 第二个参数 | string | - | `default` | 否
 
-## 事件
-事件名 | 说明 | 参数列表 | 参数说明
-:-: | :-: | :-: | :-:
-`click` | 点击事件 | $event | 原生的 dom event
-`customEvent` | 自定义事件 | [a, b, c] | a：参数一；b：参数二；c：参数三
+
+
