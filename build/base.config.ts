@@ -1,10 +1,13 @@
-import { resolve } from 'path';
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import Markdown from 'vite-plugin-md';
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import Markdown from 'vite-plugin-md'
 
 // 文档: https://vitejs.dev/config/
 export default defineConfig({
+  server:{
+    host:true
+  },
   resolve: {
     alias: {
       '@': resolve(__dirname, '../src'),
@@ -17,4 +20,4 @@ export default defineConfig({
     }),
     Markdown(),
   ],
-});
+})
