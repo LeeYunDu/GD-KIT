@@ -28,6 +28,11 @@
     name: 'Form',
     path: '/components/Form',
     component: () => import('packages/Form/docs/README.md'),
+  },{
+    title: 'Svg',
+    name: 'Svg',
+    path: '/components/Svg',
+    component: () => import('packages/Svg/docs/README.md'),
   }];
  
  const routerConfig = {

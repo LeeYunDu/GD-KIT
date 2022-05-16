@@ -22,5 +22,11 @@
     "compZhName": "表单",
     "compDesc": "表单工厂模式",
     "compClassName": "form"
+  },
+  {
+    "compName": "Svg",
+    "compZhName": "Svg",
+    "compDesc": "Svg 应用",
+    "compClassName": "svg"
   }
 ]

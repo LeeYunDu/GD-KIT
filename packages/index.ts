@@ -11,6 +11,7 @@ import { TablePlugin } from './Table';
 import { EchartMapPlugin } from './EchartMap';
 import { ThreePlugin } from './Three';
 import { FormPlugin } from './Form';
+import { SvgPlugin } from './Svg';
 
 const GDKitPlugin: Plugin = {
   install(app: App) {
@@ -18,6 +19,7 @@ const GDKitPlugin: Plugin = {
     EchartMapPlugin.install?.(app);
     ThreePlugin.install?.(app);
     FormPlugin.install?.(app);
+    SvgPlugin.install?.(app);
   },
 };
 
@@ -27,3 +29,4 @@ export * from './Table'
 export * from './EchartMap'
 export * from './Three'
 export * from './Form'
+export * from './Svg'
