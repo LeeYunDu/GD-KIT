@@ -30,6 +30,7 @@ SVG是可缩放矢量图形,是W3C XML的分支语言。
 
 以上创建了 svg标签后,可以在内部添加svg 图形
 
+[关于SVG实现复杂线动画](https://www.cnblogs.com/coco1s/p/6230165.html)
 
 
 
