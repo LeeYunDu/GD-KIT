@@ -33,6 +33,11 @@
     name: 'Svg',
     path: '/components/Svg',
     component: () => import('packages/Svg/docs/README.md'),
+  },{
+    title: '文件上传',
+    name: 'UploadFile',
+    path: '/components/UploadFile',
+    component: () => import('packages/UploadFile/docs/README.md'),
   }];
  
  const routerConfig = {

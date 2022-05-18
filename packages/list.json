@@ -28,5 +28,11 @@
     "compZhName": "Svg",
     "compDesc": "Svg 应用",
     "compClassName": "svg"
+  },
+  {
+    "compName": "UploadFile",
+    "compZhName": "文件上传",
+    "compDesc": "文件上传组件",
+    "compClassName": "upload-file"
   }
 ]

@@ -12,6 +12,7 @@ import { EchartMapPlugin } from './EchartMap';
 import { ThreePlugin } from './Three';
 import { FormPlugin } from './Form';
 import { SvgPlugin } from './Svg';
+import { UploadFilePlugin } from './UploadFile';
 
 const GDKitPlugin: Plugin = {
   install(app: App) {
@@ -20,6 +21,7 @@ const GDKitPlugin: Plugin = {
     ThreePlugin.install?.(app);
     FormPlugin.install?.(app);
     SvgPlugin.install?.(app);
+    UploadFilePlugin.install?.(app);
   },
 };
 
@@ -30,3 +32,4 @@ export * from './EchartMap'
 export * from './Three'
 export * from './Form'
 export * from './Svg'
+export * from './UploadFile'
