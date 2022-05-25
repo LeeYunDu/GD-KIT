@@ -15,7 +15,11 @@ import { reactive } from 'vue'
 
 
 let state = reactive({
-  fileList:[],
+  fileList:[
+    { url:'xx.png',fileName:'网络图片1.png' },
+    { url:'xx.png',fileName:'网络图片2.png' },
+    { url:'xx.png',fileName:'网络图片3.png' },
+  ],
   action:'文件上传地址'
 })
 </script>
