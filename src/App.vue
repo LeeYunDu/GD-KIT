@@ -4,13 +4,13 @@
       <router-link v-for="(link, index) in data.links" :key="index" :to="link.path">{{ link.name }}</router-link>
     </aside>
     <main>
-      <router-view></router-view>
+      <router-view />
     </main>
   </div>
 </template>
 
 <script setup>
-import ComponentList from 'packages/list.json';
+import ComponentList from 'packages/list.json'
 import { reactive } from 'vue'
 
 const data = reactive({

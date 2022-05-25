@@ -11,15 +11,14 @@
     <div class="preview-bottom">
       <span class="test" name="Code" @click="showSourceCode">查看代码</span>
     </div>
-    
   </div>
 </template>
 
 <script>
-import Prism from 'prismjs';
-import '../assets/prism.css';
+import Prism from 'prismjs'
+import '../assets/prism.css'
 
-const isDev = import.meta.env.MODE === 'development';
+const isDev = import.meta.env.MODE === 'development'
 
 export default {
   props: {
@@ -36,39 +35,39 @@ export default {
       require: true,
     },
   },
-  data() {
+  data () {
     return {
       sourceCode: '',
       codeVisible: false,
-    };
+    }
   },
   computed: {
-    previewSourceCode() {
-      return this.sourceCode.replace(/'\.\.\/\.\.\/index'/g, `'@tencent/my-kit'`);
+    previewSourceCode () {
+      return this.sourceCode.replace(/'\.\.\/\.\.\/index'/g, `'@tencent/my-kit'`)
     },
   },
-  async mounted() {
+  async mounted () {
     if (this.compName && this.demoName) {
       if (isDev) {
         this.sourceCode = (
           await import(/* @vite-ignore */ `../../packages/${this.compName}/docs/${this.demoName}.vue?raw`)
-        ).default;
+        ).default
       } else {
-        this.sourceCode = await fetch(`${isDev ? '' : '/MY-Kit'}/packages/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
+        this.sourceCode = await fetch(`${isDev ? '' : '/MY-Kit'}/packages/${this.compName}/docs/${this.demoName}.vue`).then(res => res.text())
       }
     }
-    await this.$nextTick();
-    Prism.highlightAll();
+    await this.$nextTick()
+    Prism.highlightAll()
   },
   methods: {
-    async copyCode() {
+    async copyCode () {
       // this.$copyText(this.sourceCode);
     },
-    showSourceCode() {
-      this.codeVisible = !this.codeVisible;
+    showSourceCode () {
+      this.codeVisible = !this.codeVisible
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
