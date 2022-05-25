@@ -66,15 +66,15 @@ let that =  reactive({
  */
 const handleOpenFile = (file:any) => {
   // 文件预览分类,如果是图片类型直接采用element-plus的预览方式,如果是文档形式则以新标签的形式打开
-  const { filePath } = file
-  const fileType = getFileType(filePath)
+  const { url } = file
+  const fileType = getFileType(url)
   // 图片预览
   if (['png', 'jpeg', 'jpg', 'gif'].includes(fileType)) {
-    that.urlList = [that.baseUrl + filePath]
+    that.urlList = [url]
     that.showViewer = true
   } else if (['doc', 'docx', 'pdf'].includes(fileType)) {
     // 文件预览,关于PDF页面内直接预览 需要通过office365服务,然后在iframe的方式打开
-    window.open(that.baseUrl + filePath)
+    window.open(url)
   } else {
     ElMessage.info('不支持该类型文件预览')
   }
@@ -96,8 +96,8 @@ const getFileType = (filePath:string) => {
  */
 const previewButton = (file:any) => {
   const canPreview = ['doc', 'docx', 'pdf', 'png', 'jpeg', 'jpg']
-  const { filePath } = file
-  const fileType = getFileType(filePath)
+  const { url } = file
+  const fileType = getFileType(url)
   return canPreview.includes(fileType)
 }
 
