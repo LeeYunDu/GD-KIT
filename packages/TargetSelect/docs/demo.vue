@@ -46,6 +46,31 @@ let state = reactive({
         },
       ],
     },
+    {
+      name: 'Level one 3',
+      id:'3',
+      children: [
+        {
+          name: 'Level two 3-1',
+          id:'3-1',
+          children: [
+            {
+              name: 'Level three 3-1-1',
+              id:'3-1-1',
+            },
+          ],
+        },
+        {
+          name: 'Level two 3-2',
+          children: [
+            {
+              name: 'Level three 3-2-1',
+              id:'3-2-1',
+            },
+          ],
+        },
+      ],
+    },
   ]
 })
 
