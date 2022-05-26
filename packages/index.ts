@@ -13,6 +13,7 @@ import { ThreePlugin } from './Three';
 import { FormPlugin } from './Form';
 import { SvgPlugin } from './Svg';
 import { UploadFilePlugin } from './UploadFile';
+import { TargetSelectPlugin } from './TargetSelect';
 
 const GDKitPlugin: Plugin = {
   install(app: App) {
@@ -22,6 +23,7 @@ const GDKitPlugin: Plugin = {
     FormPlugin.install?.(app);
     SvgPlugin.install?.(app);
     UploadFilePlugin.install?.(app);
+    TargetSelectPlugin.install?.(app);
   },
 };
 
@@ -33,3 +35,4 @@ export * from './Three'
 export * from './Form'
 export * from './Svg'
 export * from './UploadFile'
+export * from './TargetSelect'
