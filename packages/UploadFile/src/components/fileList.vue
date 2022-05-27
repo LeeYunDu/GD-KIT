@@ -183,9 +183,12 @@ const handleEntityFileDelete = (index:number) => {
  * @param file
  */
 const handleDownloadFile = (file:any) => {
-  const { url,fileName } = file
-  download(url, fileName)
+  try {
+    download(file[props.uploadProps.url], file[props.uploadProps.fileName])
+  } catch (error) {
+  }
 }
+
 
 </script>
 <style lang="scss" scoped>
