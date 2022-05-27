@@ -3,27 +3,44 @@
     <el-table :data="fileList" style="width: 100%;" :show-header="false">
       <el-table-column prop="fileName" label="文件名">
         <template #default="scope">
-          <el-button
-            size="small"
-            type="text"
-            class="nameButton"
-            :title="scope.row.fileName"
-            @click="handleOpenFile(scope.row)"
-          >
-            <span>{{ scope.row.fileName }}</span>
-          </el-button>
-          <el-button v-if="previewButton(scope.row)" size="small" @click="handleOpenFile(scope.row)">预览</el-button>
-          <el-button
-            type="primary"
-            size="small"
-            class="button"
-            @click="handleDownloadFile(scope.row)"
-          >
-            下载
-          </el-button>
-          <template v-if="!view">
-            <el-button type="danger" size="small" @click="handleEntityFileDelete(scope.$index)">删除</el-button>
-          </template>
+          <div class="file-cell">
+            <img class="file-type-icon" :src="getFileIcon(scope.row[uploadProps.url||'fileUrl'])" alt="">
+            <div class="file-name" @click="handleOpenFile(scope.row)">
+              <span>{{ scope.row[uploadProps.fileName]||'' }}</span>
+            </div>
+            <el-image
+              v-if="zoomImg&&IMAGE_TYPE_GROUP.includes(getFileType(scope.row[uploadProps.url]))"
+              class="file-img-zoom"
+              style="width: 100px; height: 100px"
+              :src="scope.row[uploadProps.url]"
+              fit="fill"
+              @click="handleOpenFile(scope.row)"
+            >
+              <template #error>
+                <div class="failed-img"><img src="../static/images/icon-failed.png" alt=""></div>
+              </template>
+            </el-image>
+            <div class="action-group">
+              <el-button
+                v-if="previewButton(scope.row)"
+                size="small"
+                @click="handleOpenFile(scope.row)"
+              >
+                预览
+              </el-button>
+              <el-button
+                type="primary"
+                size="small"
+                class="button"
+                @click="handleDownloadFile(scope.row)"
+              >
+                下载
+              </el-button>
+              <template v-if="!view">
+                <el-button type="danger" size="small" @click="handleEntityFileDelete(scope.$index)">删除</el-button>
+              </template>
+            </div>
+          </div>
         </template>
       </el-table-column>
     </el-table>
@@ -48,15 +65,30 @@ const props = defineProps({
   view:{
     type:Boolean,
     default:false,
+  },
+  uploadProps:{
+    type:Object,
+    default:()=>({ url: 'fileUrl', fileName: 'originalFilename' })
+  },
+  previewType:{
+    type:Array,
+    default:()=> ['doc', 'docx', 'pdf', 'png', 'jpeg', 'jpg','svg']
+  },
+  zoomImg:{
+    type:Boolean,
+    default:true
   }
 })
 
-const emit = defineEmits(['handleEntityFileDelete'])
+const emit = defineEmits(['delete'])
+
+
+const IMAGE_TYPE_GROUP = ['png', 'jpeg', 'jpg', 'gif','svg']
+const DOC_TYPE_GROUP = ['doc','docx','pdf']
 
 let that =  reactive({
   showViewer: false,
   urlList: [],
-  baseUrl:`/sos-files/allowFile/`
 } as any)
 
 
@@ -66,13 +98,13 @@ let that =  reactive({
  */
 const handleOpenFile = (file:any) => {
   // 文件预览分类,如果是图片类型直接采用element-plus的预览方式,如果是文档形式则以新标签的形式打开
-  const { url } = file
+  let url = file[props.uploadProps.url]
   const fileType = getFileType(url)
   // 图片预览
-  if (['png', 'jpeg', 'jpg', 'gif'].includes(fileType)) {
+  if (IMAGE_TYPE_GROUP.includes(fileType)) {
     that.urlList = [url]
     that.showViewer = true
-  } else if (['doc', 'docx', 'pdf'].includes(fileType)) {
+  } else if (DOC_TYPE_GROUP.includes(fileType)) {
     // 文件预览,关于PDF页面内直接预览 需要通过office365服务,然后在iframe的方式打开
     window.open(url)
   } else {
@@ -85,20 +117,57 @@ const handleOpenFile = (file:any) => {
  * @param filePath
  */
 const getFileType = (filePath:string) => {
+  if(filePath===''){
+    return ''
+  }
   const index = filePath.lastIndexOf('.')
   const fileType = filePath.slice(index + 1, filePath.length).toLowerCase()
   return fileType
 }
 
 /**
+ * 获取文件icon
+ */
+const getFileIcon = (filePath:string) => {
+  let type = getFileType(filePath)
+  let result = ''
+  if(['png', 'jpeg', 'jpg'].includes(type)){
+    result =  'img'
+  } else if(['doc','docx'].includes(type)){
+    result = 'doc'
+  } else if(['xls','xlsx'].includes(type)){
+    result = 'excel'
+  }else if(['rar','zip'].includes(type)){
+    result = 'zip'
+  }else if(['mp3','mp4'].includes(type)){
+    result = 'mp3'
+  }else if(['avi'].includes(type)){
+    result = 'video'
+  }else{
+    result = type
+  }
+  try {
+    return new URL(`../static/images/icon-${result}.png`, import.meta.url).href
+  } catch (error) {
+    return new URL(`../static/images/icon-other.png`, import.meta.url).href
+  }
+}
+
+
+/**
  * 文件预览按钮是否显示
  * @param file
  */
 const previewButton = (file:any) => {
-  const canPreview = ['doc', 'docx', 'pdf', 'png', 'jpeg', 'jpg']
-  const { url } = file
+  const canPreview = props.previewType||[]
+  let url = file[props.uploadProps.url]
   const fileType = getFileType(url)
-  return canPreview.includes(fileType)
+  try {
+    return canPreview.includes(fileType)
+  } catch (error) {
+    return false
+  }
+
 }
 
 /**
@@ -106,7 +175,7 @@ const previewButton = (file:any) => {
  * @param index
  */
 const handleEntityFileDelete = (index:number) => {
-  emit('handleEntityFileDelete', index)
+  emit('delete', index)
 }
 
 /**
@@ -114,13 +183,38 @@ const handleEntityFileDelete = (index:number) => {
  * @param file
  */
 const handleDownloadFile = (file:any) => {
-  const { filePath } = file
-  download(that.baseUrl + filePath, file.fileName)
+  const { url,fileName } = file
+  download(url, fileName)
 }
 
 </script>
 <style lang="scss" scoped>
 .file-table-view{
-
+  .file-cell{
+    display: flex;
+    align-items: center;
+    .file-type-icon{
+      margin-right: 20px;
+    }
+    .file-name{
+      flex: 1;
+      cursor: pointer;
+      color: #409eff;
+    }
+    .file-img-zoom{
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      margin-right: 20px;
+      .failed-img{
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: auto;
+      }
+    }
+  }
 }
 </style>

@@ -27,13 +27,17 @@
         </div>
       </template>
       <template v-else>
-        <el-button type="primary" size="small ">{{ uploadText }}</el-button>
-      </template>
-
-      <template #tip>
-        <div class="el-upload__tip"></div>
+        <slot name="default">
+          <el-button type="primary" size="small ">{{ uploadText }}</el-button>
+        </slot>
       </template>
     </el-upload>
+    <slot name="tip" :data="{accept,limitSize}">
+      <div class="upload-tip">
+        支持<span class="hight-light">{{ accept }}</span>,
+        <span class="hight-light">{{ limitSize }}</span>M以内
+      </div>
+    </slot>
     <!-- 上传进度条动画 -->
     <div v-if="fileProgress.showPercentage" class="progress-box">
       <el-progress
@@ -42,11 +46,15 @@
       />
     </div>
 
-    <FileList
-      v-bind="$attrs"
-      :file-list="that.fileList"
-      @handleEntityFileDelete="handleEntityFileDelete"
-    />
+
+    <slot name="fileList" :data="that.fileList">
+      <FileList
+        v-bind="$attrs"
+        :file-list="that.fileList"
+        :upload-props="uploadProps"
+        @delete="handleEntityFileDelete"
+      />
+    </slot>
   </div>
 </template>
 
@@ -57,8 +65,16 @@ import FileList from './components/fileList.vue'
 
 const props = defineProps({
   value: {
-    type: String,
-    default: ''
+    type: Array,
+    default: ()=>[]
+  },
+  fileNames:{
+    type:String,
+    default:''
+  },
+  fileUrls:{
+    type:String,
+    default:''
   },
   isView:{
     type:Boolean,
@@ -70,7 +86,7 @@ const props = defineProps({
   },
   action:{
     type:String,
-    default:`/sos-files/files/manager/allow/upload`
+    default:``
   },
   // 是否上传多个文件
   multiple: {
@@ -81,6 +97,10 @@ const props = defineProps({
   limit: {
     type: Number,
     default: null
+  },
+  limitSize:{
+    type:Number,
+    default:5
   },
   headers:{
     type:Object,
@@ -101,18 +121,29 @@ const props = defineProps({
     type:String,
     default:'上传文件'
   },
-  // 最终输出的文件对象所需要的字段
-  needField: {
-    type: Array,
-    default: () => ['url','fileName']
-  }
+  uploadProps:{
+    type:Object,
+    default:()=>({ url: 'fileUrl', fileName: 'originalFilename' })
+  },
+  domain:{
+    type:String,
+    default:''
+  },
+
+
 
 })
 const that = reactive({
   fileList: []
 } as any)
 
-const emit = defineEmits(['error','update:value'])
+const emit = defineEmits([
+  'error',
+  'update:value',
+  'update:fileUrls',
+  'update:fileNames',
+  'update:toJSON'
+])
 
 
 function init (){
@@ -130,29 +161,28 @@ init()
 
 // 监听文件列表变化,抛出结果
 watch(that.fileList, (file:any) => {
-  const result:Array<any> = []
+  let fileUrls:Array<any> = []
+  let fileNames:Array<any> = []
   file.forEach((element:any) => {
-    const resuleFile:any = {}
-    props.needField.forEach((key:any) => {
-      resuleFile[key] = element[key] || undefined
-    })
-    result.push(resuleFile)
+    fileUrls.push(element[props.uploadProps.url]||'')
+    fileNames.push(element[props.uploadProps.fileName]||'')
   })
+  emit('update:toJSON', file.length > 0 ? JSON.stringify(file) : '')
+  emit('update:value', file)
+  emit('update:fileNames',fileNames.join(','))
+  emit('update:fileUrls',fileUrls.join(','))
 
-  // emit('update:value', result.length > 0 ? JSON.stringify(result) : '')
-  emit('update:value', result.length > 0 ? result :[])
-
-})
+},{ immediate:true })
 /**
  * 文件上传前拦截
  * @param file
  */
 const handleBeforeUpload = async  (file:any) => {
   return new Promise((resolve, reject) => {
-    const filePath = file.name
+    const filePath = file[props.uploadProps.url]||''
     const index = filePath.lastIndexOf('.')
     const fileType = filePath.slice(index, filePath.length).toLowerCase()
-    let FILE_SIZE_COUNT = 10
+    let FILE_SIZE_COUNT = props.limitSize
     const isLimit = file.size / 1024 / 1024 < FILE_SIZE_COUNT // 限制文件大小
     // 文件类型上传判断处理
     if (props.accept.includes(fileType)) {
@@ -205,11 +235,11 @@ const handleSuccess = (response:any, upfile:any, fileList:Array<any>):void => {
   // 文件存储
   let domain = response.data.domain
   response.data.resultList.forEach((file:any)=>{
-    let fileObj = {
-      fileName:file.originalFilename,
-      url:domain + file.fileUrl
-    }
-    that.fileList.push(fileObj)
+    // let fileObj = {
+    //   fileName:file.originalFilename,
+    //   url:domain + file.fileUrl
+    // }
+    that.fileList.push(file)
   })
 }
 
@@ -275,6 +305,14 @@ const handleExceed = () => {
 
   ::v-deep(.el-upload){
 
+  }
+  .upload-tip{
+    // color: #333;
+    font-size: 14px;
+     color: rgb(248, 113, 113);
+    .hight-light{
+
+    }
   }
 }
 </style>
