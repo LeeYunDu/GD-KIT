@@ -6,7 +6,8 @@ import Markdown from 'vite-plugin-md'
 // 文档: https://vitejs.dev/config/
 export default defineConfig({
   server:{
-    host:true
+    host:true,
+    port: 4321,
   },
   resolve: {
     alias: {
