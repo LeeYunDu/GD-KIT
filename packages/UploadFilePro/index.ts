@@ -1,12 +1,12 @@
-import { App, Plugin } from 'vue'
-import UploadFile from './src/index.vue'
+import { App, Plugin } from 'vue';
+import UploadFilePro from './src/index.vue';
 
-export const UploadFilePlugin: Plugin = {
-  install (app: App) {
-    app.component('GdUploadFilePro', UploadFile)
+export const UploadFileProPlugin: Plugin = {
+  install(app: App) {
+    app.component('gd-upload-file-pro', UploadFilePro);
   },
-}
+};
 
 export {
-  UploadFile,
-}
+  UploadFilePro,
+};

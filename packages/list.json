@@ -40,5 +40,17 @@
     "compZhName": "树形选择",
     "compDesc": "人员、组织部树形选择器",
     "compClassName": "target-select"
+  },
+  {
+    "compName": "UploadFilePro",
+    "compZhName": "文件上传Pro版本",
+    "compDesc": "文件上传",
+    "compClassName": "upload-file-pro"
+  },
+  {
+    "compName": "FileList",
+    "compZhName": "文件列表",
+    "compDesc": "文件列表展示",
+    "compClassName": "file-list"
   }
 ]

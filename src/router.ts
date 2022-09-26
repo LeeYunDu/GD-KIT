@@ -43,6 +43,16 @@
     name: 'TargetSelect',
     path: '/components/TargetSelect',
     component: () => import('packages/TargetSelect/docs/README.md'),
+  },{
+    title: '文件上传Pro版本',
+    name: 'UploadFilePro',
+    path: '/components/UploadFilePro',
+    component: () => import('packages/UploadFilePro/docs/README.md'),
+  },{
+    title: '文件列表',
+    name: 'FileList',
+    path: '/components/FileList',
+    component: () => import('packages/FileList/docs/README.md'),
   }];
  
  const routerConfig = {

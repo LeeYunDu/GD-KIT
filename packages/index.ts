@@ -14,6 +14,8 @@ import { FormPlugin } from './Form';
 import { SvgPlugin } from './Svg';
 import { UploadFilePlugin } from './UploadFile';
 import { TargetSelectPlugin } from './TargetSelect';
+import { UploadFileProPlugin } from './UploadFilePro';
+import { FileListPlugin } from './FileList';
 
 const GDKitPlugin: Plugin = {
   install(app: App) {
@@ -24,6 +26,8 @@ const GDKitPlugin: Plugin = {
     SvgPlugin.install?.(app);
     UploadFilePlugin.install?.(app);
     TargetSelectPlugin.install?.(app);
+    UploadFileProPlugin.install?.(app);
+    FileListPlugin.install?.(app);
   },
 };
 
@@ -36,3 +40,5 @@ export * from './Form'
 export * from './Svg'
 export * from './UploadFile'
 export * from './TargetSelect'
+export * from './UploadFilePro'
+export * from './FileList'
