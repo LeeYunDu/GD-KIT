@@ -16,7 +16,9 @@
             <FormItem
               v-model="params[item.prop]"
               v-bind="item"
-              @change="(val)=>{handleChange(val,item)}"
+              @change="(val)=>{
+                handleChange(val,item)
+              }"
             >
               <template v-if="item.type=='slot'" #[item.prop]>
                 <slot :name="item.prop"></slot>
@@ -33,7 +35,7 @@
 import { PropType,ref, watchEffect,Ref, shallowRef } from 'vue'
 import FormGridRow from './components/formGridRow.vue'
 import FormGridItem from './components/formGridItem.vue'
-import FormItem from './components/formItem.vue'
+import FormItem from './components/FormItem.vue'
 
 const emit = defineEmits(['changeBus'])
 const props = defineProps({
@@ -63,6 +65,7 @@ function validate (){
     })
   })
 }
+
 function resetFields (){
   (FormRef.value as any).resetFields()
 }
@@ -70,16 +73,16 @@ function handleChange (val:any,item:any){
   const { prop } = item
   emit('changeBus',{ type:prop,value:val })
 }
+
 defineExpose({
   validate,resetFields
 })
+
 watchEffect(() => {
   params.value = props.model
 })
 </script>
 
 <style scoped>
-.gd-form {
 
-}
 </style>

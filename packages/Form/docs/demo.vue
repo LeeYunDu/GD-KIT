@@ -45,7 +45,6 @@ let formViewProps = ref({
     { label:'输入框数字类型',prop:'inputNumber',type:'input',formItemProps:{ required:true },inputProps:{ type:'number' } },
     { label:'表单插槽',prop:'slot',type:'slot',gridProps:{ span:12 } },
     { label:'滑块',prop:'switch',type:'switch',gridProps:{ span:24 } },
-
     { label:'下拉框',prop:'select',type:'select',
       inputProps:{
         clearable:true,
