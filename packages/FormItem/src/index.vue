@@ -28,26 +28,48 @@
       <template v-else-if="['cascader'].includes(inputType)">
       </template>
       <!-- 时间选择器 -->
-      <template v-else-if="['date-picker'].includes(inputType)">
+      <template v-else-if="['date'].includes(inputType)">
+        <component
+          :is="`${itemPrefix}${itemTypeMap[inputType]}`"
+          v-bind="{...$attrs,...inputProps}"
+          :placeholder="placeholder"
+          :value-format="valueFormat"
+          @change="ondDateChange"
+        />
       </template>
-      <!-- 下拉选择器、多选框、单选框 -->
-      <template v-else-if="['select','checkbox','radio'].includes(inputType)">
+      <!-- 下拉框 -->
+      <template v-else-if="['select'].includes(inputType)">
         <component
           :is="`${itemPrefix}${itemTypeMap[inputType]}`"
           v-bind="{...$attrs,...inputProps}"
           :placeholder="placeholder"
         >
-          <!-- 三者之间绑定值的方式不同需要判断下 -->
           <component
             :is="`${itemPrefix}${itemTypeOptionMap[inputType]}`"
             v-for="(item,index) in selectOption"
             :key="index"
+            :label="item.label"
+            :value="'valueKey' in $attrs?item:item[selectValueKey]"
+            :disabled="(item.disabled??false)"
+          />
+        </component>
+      </template>
+      <!-- 多选框、单选框 -->
+      <template v-else-if="['checkbox','radio'].includes(inputType)">
+        <component
+          :is="`${itemPrefix}${itemTypeMap[inputType]}`"
+          v-bind="{...$attrs,...inputProps}"
+          :placeholder="placeholder"
+        >
+          <!-- checkbox 目前还没有很好的设计 label 绑定的字段，传了valueKey绑定item 不传默认选项value -->
+          <component
+            :is="`${itemPrefix}${itemTypeOptionMap[inputType]}`"
+            v-for="(item,index) in selectOption"
             v-bind="item"
-            :label="['checkbox','radio'].includes(inputType)?item.value:item.label"
+            :key="index"
+            :label="'valueKey' in $attrs?item:item[selectValueKey]"
           >
-            <template v-if="['checkbox','radio'].includes(inputType)">
-              {{ item.label }}
-            </template>
+            {{ item.label }}
           </component>
         </component>
       </template>
@@ -84,31 +106,33 @@ const props = defineProps({
   inputUnit:{ type:String,default:'' },
   require:{ type:Boolean,default:false },
   rules:{ type:Array,default:()=>[] },
-
+  selectValueKey:{ type:String,default:'value' },
+  valueFormat:{ type:String,default:'x' },
   span:{ type:[Number,String],default:6 },
   colOffset: { type: Number, default: 0 },
-
   slotName:{ type:String },
 
+  formData:{ type:Object,default:()=>({}) },
   formItemProps:{  type:Object,  default:()=>({}) },
   inputProps:{ type:Object, default:()=>({}) }
 })
 
 let store = useStore()
+const attrs = useAttrs()
+let emits = defineEmits(['change'])
 
 const itemPrefix = ref('el-')
 const itemTypeMap:Ref<any> = ref({
   'select':'select',
   'radio':'radio-group',
   'checkbox':'checkbox-group',
+  'date':'date-picker'
 })
 const itemTypeOptionMap:Ref<any> = ref({
   'select':'option',
   'radio':'radio',
   'checkbox':'checkbox',
 })
-
-const attrs = useAttrs()
 
 /**
  * 字段占位符内容显示
@@ -120,7 +144,6 @@ const placeholder = computed(() => {
       : `请输入${props.label.replace('：', '')}`
   return attrs.placeholder || ''
 })
-
 
 /**
  * 表单字段校验规则
@@ -147,6 +170,21 @@ const selectOption = computed(()=>{
     return []
   }
 })
+
+
+/**
+ * 时间范围选择器Change事件
+ * @param value
+ */
+function ondDateChange (value:any){
+  // 时间范围赋值2个字段
+  if('timerangeFields' in attrs && attrs['type']==='datetimerange'){
+    value.forEach((element:any,index:number) => {
+      (props.formData as any)[(attrs['timerangeFields'] as any)[index]] = element
+    })
+  }
+  emits('change',value)
+}
 
 </script>
 <style lang="scss" scoped>
