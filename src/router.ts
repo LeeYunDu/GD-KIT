@@ -53,6 +53,11 @@
     name: 'FileList',
     path: '/components/FileList',
     component: () => import('packages/FileList/docs/README.md'),
+  },{
+    title: '表单字段',
+    name: 'FormItem',
+    path: '/components/FormItem',
+    component: () => import('packages/FormItem/docs/README.md'),
   }];
  
  const routerConfig = {

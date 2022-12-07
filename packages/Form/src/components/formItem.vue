@@ -1,5 +1,5 @@
 <template>
-  <div class="form-item-view">
+  <el-col>
     <el-form-item
       :label="label"
       :prop="prop"
@@ -35,7 +35,7 @@
         />
       </template>
     </el-form-item>
-  </div>
+  </el-col>
 </template>
 <script lang="ts" setup>
 import { computed,ref,Ref,PropType } from 'vue'

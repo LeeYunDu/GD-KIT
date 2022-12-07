@@ -52,5 +52,11 @@
     "compZhName": "文件列表",
     "compDesc": "文件列表展示",
     "compClassName": "file-list"
+  },
+  {
+    "compName": "FormItem",
+    "compZhName": "表单字段",
+    "compDesc": "表单字段生成",
+    "compClassName": "form-item"
   }
 ]
