@@ -20,6 +20,16 @@
       <template v-if="inputType==='slot'">
         <slot :name="slotName??prop"></slot>
       </template>
+      <!-- 上传组件 -->
+      <template v-else-if="['upload'].includes(inputType)">
+        upload
+      </template>
+      <!-- 联级选择器 -->
+      <template v-else-if="['cascader'].includes(inputType)">
+      </template>
+      <!-- 时间选择器 -->
+      <template v-else-if="['date-picker'].includes(inputType)">
+      </template>
       <!-- 下拉选择器、多选框、单选框 -->
       <template v-else-if="['select','checkbox','radio'].includes(inputType)">
         <component
@@ -30,7 +40,7 @@
           <!-- 三者之间绑定值的方式不同需要判断下 -->
           <component
             :is="`${itemPrefix}${itemTypeOptionMap[inputType]}`"
-            v-for="(item,index) in inputProps.options"
+            v-for="(item,index) in selectOption"
             :key="index"
             v-bind="item"
             :label="['checkbox','radio'].includes(inputType)?item.value:item.label"
@@ -41,9 +51,7 @@
           </component>
         </component>
       </template>
-      <template v-else-if="['upload'].includes(inputType)">
-        upload
-      </template>
+
       <template v-else>
         <component
           :is="`${itemPrefix}${inputType}`"
@@ -64,6 +72,8 @@
   </el-col>
 </template>
 <script lang="ts" setup>
+
+import { useStore } from 'vuex'
 import { computed,ref,Ref,PropType, useAttrs } from 'vue'
 
 const props = defineProps({
@@ -73,7 +83,7 @@ const props = defineProps({
   labelWidth: { type: [Number, String], default: '' },
   inputUnit:{ type:String,default:'' },
   require:{ type:Boolean,default:false },
-  rules:{ type:Array,default:[] },
+  rules:{ type:Array,default:()=>[] },
 
   span:{ type:[Number,String],default:6 },
   colOffset: { type: Number, default: 0 },
@@ -84,26 +94,25 @@ const props = defineProps({
   inputProps:{ type:Object, default:()=>({}) }
 })
 
-const itemPrefix = ref('el-')
+let store = useStore()
 
+const itemPrefix = ref('el-')
 const itemTypeMap:Ref<any> = ref({
   'select':'select',
   'radio':'radio-group',
   'checkbox':'checkbox-group',
 })
-
 const itemTypeOptionMap:Ref<any> = ref({
   'select':'option',
   'radio':'radio',
   'checkbox':'checkbox',
 })
 
-
-
-
-
 const attrs = useAttrs()
 
+/**
+ * 字段占位符内容显示
+ */
 const placeholder = computed(() => {
   if (props.label && !('placeholder' in attrs))
     return ['select', 'date'].includes(props.inputType)
@@ -112,13 +121,31 @@ const placeholder = computed(() => {
   return attrs.placeholder || ''
 })
 
+
+/**
+ * 表单字段校验规则
+ */
 const rule = computed(()=>{
   if(props.require){
     return [{ required: true, message: '该项为必填项', trigger: 'blur' },...props.rules]
   }else{
     return props.rules
   }
+})
 
+/**
+ * 选项配置
+ */
+const selectOption = computed(()=>{
+  if(Array.isArray(props.inputProps.options)){
+    return props.inputProps.options
+  }else if(typeof props.inputProps.options ==='string'){
+    // 从字典里取
+    return []
+  }else{
+    // 其他获取options的方式
+    return []
+  }
 })
 
 </script>
