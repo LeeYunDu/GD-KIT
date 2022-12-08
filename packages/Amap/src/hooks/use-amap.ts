@@ -206,6 +206,9 @@ export default function useAMap (options: AMapOptionsMode): AMapStateMode {
       })
       marker.on('click', () => {
 
+
+        const { position } = marker.w
+        map.value.panTo([position.lng, position.lat])
         markerResolve && markerResolve({ marker })
         setMarkerActiveStyle(marker)
 
