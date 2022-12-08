@@ -17,6 +17,7 @@ import { TargetSelectPlugin } from './TargetSelect';
 import { UploadFileProPlugin } from './UploadFilePro';
 import { FileListPlugin } from './FileList';
 import { FormItemPlugin } from './FormItem';
+import { AmapPlugin } from './Amap';
 
 const GDKitPlugin: Plugin = {
   install(app: App) {
@@ -30,6 +31,7 @@ const GDKitPlugin: Plugin = {
     UploadFileProPlugin.install?.(app);
     FileListPlugin.install?.(app);
     FormItemPlugin.install?.(app);
+    AmapPlugin.install?.(app);
   },
 };
 
@@ -45,3 +47,4 @@ export * from './TargetSelect'
 export * from './UploadFilePro'
 export * from './FileList'
 export * from './FormItem'
+export * from './Amap'

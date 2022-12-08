@@ -58,6 +58,11 @@
     name: 'FormItem',
     path: '/components/FormItem',
     component: () => import('packages/FormItem/docs/README.md'),
+  },{
+    title: '高德地图应用',
+    name: 'Amap',
+    path: '/components/Amap',
+    component: () => import('packages/Amap/docs/README.md'),
   }];
  
  const routerConfig = {

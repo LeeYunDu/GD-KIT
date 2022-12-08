@@ -58,5 +58,11 @@
     "compZhName": "表单字段",
     "compDesc": "表单字段生成",
     "compClassName": "form-item"
+  },
+  {
+    "compName": "Amap",
+    "compZhName": "高德地图应用",
+    "compDesc": "高德地图hooks",
+    "compClassName": "amap"
   }
 ]
