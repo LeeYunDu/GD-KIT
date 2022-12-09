@@ -228,7 +228,7 @@ function onMove (){
   state.value.reqFrame = requestAnimationFrame(()=>{
 
     const h = state.value.realBoxHeight / 2
-    const w = state.value.realBoxWidth.replace('px','') / 2
+    const w = typeof state.value.realBoxWidth==='string'? state.value.realBoxWidth.replace('px','') / 2:state.value.realBoxWidth
 
     const { direction,waitTime } = propsOptions.value
 
