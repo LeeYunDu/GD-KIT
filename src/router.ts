@@ -63,6 +63,11 @@
     name: 'Amap',
     path: '/components/Amap',
     component: () => import('packages/Amap/docs/README.md'),
+  },{
+    title: '无限滚动列表',
+    name: 'RollList',
+    path: '/components/RollList',
+    component: () => import('packages/RollList/docs/README.md'),
   }];
  
  const routerConfig = {

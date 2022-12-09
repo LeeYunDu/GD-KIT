@@ -18,6 +18,7 @@ import { UploadFileProPlugin } from './UploadFilePro';
 import { FileListPlugin } from './FileList';
 import { FormItemPlugin } from './FormItem';
 import { AmapPlugin } from './Amap';
+import { RollListPlugin } from './RollList';
 
 const GDKitPlugin: Plugin = {
   install(app: App) {
@@ -32,6 +33,7 @@ const GDKitPlugin: Plugin = {
     FileListPlugin.install?.(app);
     FormItemPlugin.install?.(app);
     AmapPlugin.install?.(app);
+    RollListPlugin.install?.(app);
   },
 };
 
@@ -48,3 +50,4 @@ export * from './UploadFilePro'
 export * from './FileList'
 export * from './FormItem'
 export * from './Amap'
+export * from './RollList'

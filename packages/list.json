@@ -64,5 +64,11 @@
     "compZhName": "高德地图应用",
     "compDesc": "高德地图hooks",
     "compClassName": "amap"
+  },
+  {
+    "compName": "RollList",
+    "compZhName": "无限滚动列表",
+    "compDesc": "无限滚动列表",
+    "compClassName": "roll-list"
   }
 ]
