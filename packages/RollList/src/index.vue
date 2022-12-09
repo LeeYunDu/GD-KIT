@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, shallowRef,ref,watch, reactive, nextTick, onMounted } from 'vue'
+import { computed, shallowRef,ref,watch, reactive, nextTick, onMounted, onUnmounted } from 'vue'
 
 let props = defineProps({
   data:{
@@ -323,6 +323,11 @@ function startMove (){
 
 onMounted(()=>{
   init()
+})
+
+onUnmounted(()=>{
+  onCancle()
+  clearTimeout(state.value.singleWaitTime)
 })
 
 
