@@ -73,6 +73,11 @@
     name: 'Descriptions',
     path: '/components/Descriptions',
     component: () => import('packages/Descriptions/docs/README.md'),
+  },{
+    title: '甘特图',
+    name: 'Gantt',
+    path: '/components/Gantt',
+    component: () => import('packages/Gantt/docs/README.md'),
   }];
  
  const routerConfig = {
