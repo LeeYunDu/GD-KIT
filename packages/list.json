@@ -76,5 +76,11 @@
     "compZhName": "描述面板",
     "compDesc": "信息描述面板",
     "compClassName": "descriptions"
+  },
+  {
+    "compName": "Gantt",
+    "compZhName": "甘特图",
+    "compDesc": "甘特图",
+    "compClassName": "gantt"
   }
 ]

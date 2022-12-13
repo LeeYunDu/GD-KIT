@@ -4,19 +4,19 @@
       v-bind="$attrs"
       ref="tableRef"
     >
-      <TableColumn
-        v-for="column in columns"
-        :key="column.prop"
-        :column="column"
-      >
-        <template v-if="column.type=='slot'" #[column.prop]="{row}">
-          <slot
-            :name="column.prop"
-            :column="column"
-            :row="row"
-          ></slot>
-        </template>
-      </TableColumn>
+      <template v-for="(column,index) in columns" :key="setKey(column.prop,index)">
+        <TableColumn
+          v-bind="column"
+        >
+          <template v-if="column.type=='slot'" #[column.prop]="{row}">
+            <slot
+              :name="column.prop"
+              :column="column"
+              :row="row"
+            ></slot>
+          </template>
+        </TableColumn>
+      </template>
     </el-table>
     <!-- 分页按钮 -->
     <template v-if="'total' in $attrs">
@@ -38,6 +38,11 @@ const props = defineProps({
 })
 
 const tableRef = shallowRef<HTMLTableElement>()
+
+
+const setKey = (porp:any, index:number) => {
+  return `${porp}_${index}`
+}
 
 </script>
 

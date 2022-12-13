@@ -20,6 +20,7 @@ import { FormItemPlugin } from './FormItem';
 import { AmapPlugin } from './Amap';
 import { RollListPlugin } from './RollList';
 import { DescriptionsPlugin } from './Descriptions';
+import { GanttPlugin } from './Gantt';
 
 const GDKitPlugin: Plugin = {
   install(app: App) {
@@ -36,6 +37,7 @@ const GDKitPlugin: Plugin = {
     AmapPlugin.install?.(app);
     RollListPlugin.install?.(app);
     DescriptionsPlugin.install?.(app);
+    GanttPlugin.install?.(app);
   },
 };
 
@@ -54,3 +56,4 @@ export * from './FormItem'
 export * from './Amap'
 export * from './RollList'
 export * from './Descriptions'
+export * from './Gantt'
