@@ -19,6 +19,7 @@ import { FileListPlugin } from './FileList';
 import { FormItemPlugin } from './FormItem';
 import { AmapPlugin } from './Amap';
 import { RollListPlugin } from './RollList';
+import { DescriptionsPlugin } from './Descriptions';
 
 const GDKitPlugin: Plugin = {
   install(app: App) {
@@ -34,6 +35,7 @@ const GDKitPlugin: Plugin = {
     FormItemPlugin.install?.(app);
     AmapPlugin.install?.(app);
     RollListPlugin.install?.(app);
+    DescriptionsPlugin.install?.(app);
   },
 };
 
@@ -51,3 +53,4 @@ export * from './FileList'
 export * from './FormItem'
 export * from './Amap'
 export * from './RollList'
+export * from './Descriptions'

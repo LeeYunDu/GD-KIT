@@ -70,5 +70,11 @@
     "compZhName": "无限滚动列表",
     "compDesc": "无限滚动列表",
     "compClassName": "roll-list"
+  },
+  {
+    "compName": "Descriptions",
+    "compZhName": "描述面板",
+    "compDesc": "信息描述面板",
+    "compClassName": "descriptions"
   }
 ]

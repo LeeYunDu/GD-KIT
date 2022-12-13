@@ -68,6 +68,11 @@
     name: 'RollList',
     path: '/components/RollList',
     component: () => import('packages/RollList/docs/README.md'),
+  },{
+    title: '描述面板',
+    name: 'Descriptions',
+    path: '/components/Descriptions',
+    component: () => import('packages/Descriptions/docs/README.md'),
   }];
  
  const routerConfig = {
